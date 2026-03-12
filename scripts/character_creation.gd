@@ -50,19 +50,26 @@ func _on_next_class_pressed():
 func _on_dice_button_pressed():
 	roll_stats()
 
-# 核心算法：随机分配25点属性，每项最小4点
+# 核心算法：遵循冒险岛经典规则
+# 四项属性之和固定为 25，每项属性最低为 4
 func roll_stats():
-	# 初始每项4点，共16点，还剩9点可自由分配
-	var points_to_assign = 25 - 16
-	stats = {"str": 4, "dex": 4, "int": 4, "luk": 4}
+	var total_points = 25
+	var min_stat = 4
 	
+	# 1. 先给每项属性分配基础值 4
+	stats = {"str": min_stat, "dex": min_stat, "int": min_stat, "luk": min_stat}
+	
+	# 2. 计算剩余可分配点数 (25 - 4*4 = 9)
+	var remaining_points = total_points - (min_stat * 4)
+	
+	# 3. 随机分配剩余点数
 	var keys = stats.keys()
-	while points_to_assign > 0:
+	while remaining_points > 0:
 		var random_key = keys[randi() % keys.size()]
-		# 每项上限12 (模拟冒险岛初期的极端或平衡分配)
-		if stats[random_key] < 12:
+		# 冒险岛初期单项属性通常不会超过 12-13，这里设置一个合理的上限
+		if stats[random_key] < 13:
 			stats[random_key] += 1
-			points_to_assign -= 1
+			remaining_points -= 1
 	
 	update_ui()
 
