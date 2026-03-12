@@ -1,7 +1,7 @@
 extends Resource
 class_name CharacterData
 
-@export var class_name: String = ""
+@export var character_class: String = ""
 @export var description: String = ""
 @export var icon: Texture2D
 @export var base_str: int = 4
