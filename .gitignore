@@ -1,0 +1,8 @@
+# Godot 4.x specific ignores
+.godot/
+*.translation
+/android/
+/ios/
+/build/
+.editorconfig
+*.log

@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://b8y2j3k4l5m6n"]
+
+[ext_resource type="Script" path="res://scripts/character_creation.gd" id="1_script"]
+
+[node name="CharacterCreation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "角色创建"
+horizontal_alignment = 1
+
+[node name="CharacterPreview" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="ClassSelection" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="VBoxContainer/ClassSelection"]
+layout_mode = 2
+text = " < "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ClassSelection"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ClassName" type="Label" parent="VBoxContainer/ClassSelection/VBoxContainer"]
+layout_mode = 2
+text = "战士"
+horizontal_alignment = 1
+
+[node name="ClassDesc" type="Label" parent="VBoxContainer/ClassSelection/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "高体力和力量，近战大师。"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="NextButton" type="Button" parent="VBoxContainer/ClassSelection"]
+layout_mode = 2
+text = " > "
+
+[node name="Stats" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="STR" type="HBoxContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/STR"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "力量 (STR):"
+
+[node name="Value" type="Label" parent="VBoxContainer/Stats/STR"]
+layout_mode = 2
+text = "4"
+
+[node name="DEX" type="HBoxContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/DEX"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "敏捷 (DEX):"
+
+[node name="Value" type="Label" parent="VBoxContainer/Stats/DEX"]
+layout_mode = 2
+text = "4"
+
+[node name="INT" type="HBoxContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/INT"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "智力 (INT):"
+
+[node name="Value" type="Label" parent="VBoxContainer/Stats/INT"]
+layout_mode = 2
+text = "4"
+
+[node name="LUK" type="HBoxContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/LUK"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "运气 (LUK):"
+
+[node name="Value" type="Label" parent="VBoxContainer/Stats/LUK"]
+layout_mode = 2
+text = "4"
+
+[node name="DiceButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "点击掷骰子 (随机属性)"
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8, 0, 1)
+text = "开始游戏"
+
+[connection signal="pressed" from="VBoxContainer/ClassSelection/PrevButton" to="." method="_on_prev_class_pressed"]
+[connection signal="pressed" from="VBoxContainer/ClassSelection/NextButton" to="." method="_on_next_class_pressed"]
+[connection signal="pressed" from="VBoxContainer/DiceButton" to="." method="_on_dice_button_pressed"]
