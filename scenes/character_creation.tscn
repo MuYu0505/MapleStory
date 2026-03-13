@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b8y2j3k4l5m6n"]
+[gd_scene load_steps=2 format=3 uid="uid://b8y2j3k4l5m6n"]
 
 [ext_resource type="Script" path="res://scripts/character_creation.gd" id="1_script"]
 
@@ -28,59 +28,115 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -200.0
+offset_top = -250.0
 offset_right = 150.0
-offset_bottom = 200.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 15
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "角色创建"
+theme_override_font_sizes/font_size = 24
+text = "创建你的冒险家"
 horizontal_alignment = 1
 
-[node name="CharacterPreview" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="CharacterPreview" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+
+[node name="Skin" type="TextureRect" parent="VBoxContainer/CharacterPreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
 stretch_mode = 5
 
-[node name="ClassSelection" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Face" type="TextureRect" parent="VBoxContainer/CharacterPreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hair" type="TextureRect" parent="VBoxContainer/CharacterPreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ClassSelection" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="PrevButton" type="Button" parent="VBoxContainer/ClassSelection"]
+[node name="ClassName" type="Label" parent="VBoxContainer/ClassSelection"]
 layout_mode = 2
-text = " < "
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ClassSelection"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ClassName" type="Label" parent="VBoxContainer/ClassSelection/VBoxContainer"]
-layout_mode = 2
-text = "战士"
+text = "新手 (Beginner)"
 horizontal_alignment = 1
 
-[node name="ClassDesc" type="Label" parent="VBoxContainer/ClassSelection/VBoxContainer"]
+[node name="ClassDesc" type="Label" parent="VBoxContainer/ClassSelection"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "高体力和力量，近战大师。"
+text = "初出茅庐的冒险者。10级后转职。"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="NextButton" type="Button" parent="VBoxContainer/ClassSelection"]
+[node name="AppearanceControls" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-text = " > "
+theme_override_constants/separation = 5
+
+[node name="HairControl" type="HBoxContainer" parent="VBoxContainer/AppearanceControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/HairControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "发型"
+
+[node name="NextHair" type="Button" parent="VBoxContainer/AppearanceControls/HairControl"]
+layout_mode = 2
+text = " 换一个 "
+
+[node name="FaceControl" type="HBoxContainer" parent="VBoxContainer/AppearanceControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/FaceControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "表情"
+
+[node name="NextFace" type="Button" parent="VBoxContainer/AppearanceControls/FaceControl"]
+layout_mode = 2
+text = " 换一个 "
+
+[node name="SkinControl" type="HBoxContainer" parent="VBoxContainer/AppearanceControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/SkinControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "肤色"
+
+[node name="NextSkin" type="Button" parent="VBoxContainer/AppearanceControls/SkinControl"]
+layout_mode = 2
+text = " 换一个 "
 
 [node name="Stats" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 
 [node name="STR" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
-alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/STR"]
 layout_mode = 2
@@ -93,7 +149,6 @@ text = "4"
 
 [node name="DEX" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
-alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/DEX"]
 layout_mode = 2
@@ -106,7 +161,6 @@ text = "4"
 
 [node name="INT" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
-alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/INT"]
 layout_mode = 2
@@ -119,7 +173,6 @@ text = "4"
 
 [node name="LUK" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
-alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/LUK"]
 layout_mode = 2
@@ -132,13 +185,9 @@ text = "4"
 
 [node name="DiceButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "点击掷骰子 (随机属性)"
+text = "🎲 掷骰子随机数值"
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.8, 0, 1)
-text = "开始游戏"
-
-[connection signal="pressed" from="VBoxContainer/ClassSelection/PrevButton" to="." method="_on_prev_class_pressed"]
-[connection signal="pressed" from="VBoxContainer/ClassSelection/NextButton" to="." method="_on_next_class_pressed"]
-[connection signal="pressed" from="VBoxContainer/DiceButton" to="." method="_on_dice_button_pressed"]
+theme_override_font_sizes/font_size = 20
+text = "创建角色并开始"
