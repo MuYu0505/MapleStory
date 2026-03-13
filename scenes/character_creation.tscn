@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8y2j3k4l5m6n"]
+[gd_scene format=3 uid="uid://b8y2j3k4l5m6n"]
 
-[ext_resource type="Script" path="res://scripts/character_creation.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://0mg7or7toxcx" path="res://scripts/character_creation.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ckw4f3e8inhba" path="res://assets/skin/skin_0.png" id="2_5nl2f"]
 
-[node name="CharacterCreation" type="Control"]
+[node name="CharacterCreation" type="Control" unique_id=129513897]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=44928060]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1, 0.1, 0.1, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=614779693]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,159 +36,144 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 15
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=353428953]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "创建你的冒险家"
 horizontal_alignment = 1
 
-[node name="CharacterPreview" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 120)
+[node name="CharacterPreview" type="Control" parent="VBoxContainer" unique_id=1261525276]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="Skin" type="TextureRect" parent="VBoxContainer/CharacterPreview"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-stretch_mode = 5
+[node name="Skin" type="Sprite2D" parent="VBoxContainer/CharacterPreview" unique_id=297565864]
+texture_filter = 1
+position = Vector2(150, 100)
+scale = Vector2(3, 3)
+texture = ExtResource("2_5nl2f")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
 
-[node name="Face" type="TextureRect" parent="VBoxContainer/CharacterPreview"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-stretch_mode = 5
+[node name="Hair" type="Sprite2D" parent="VBoxContainer/CharacterPreview" unique_id=1067145002]
+texture_filter = 1
+position = Vector2(150, 100)
+scale = Vector2(3, 3)
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
 
-[node name="Hair" type="TextureRect" parent="VBoxContainer/CharacterPreview"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ClassSelection" type="VBoxContainer" parent="VBoxContainer"]
+[node name="ClassSelection" type="VBoxContainer" parent="VBoxContainer" unique_id=1248506239]
 layout_mode = 2
 alignment = 1
 
-[node name="ClassName" type="Label" parent="VBoxContainer/ClassSelection"]
+[node name="ClassName" type="Label" parent="VBoxContainer/ClassSelection" unique_id=670077668]
 layout_mode = 2
 text = "新手 (Beginner)"
 horizontal_alignment = 1
 
-[node name="ClassDesc" type="Label" parent="VBoxContainer/ClassSelection"]
+[node name="ClassDesc" type="Label" parent="VBoxContainer/ClassSelection" unique_id=35252481]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "初出茅庐的冒险者。10级后转职。"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="AppearanceControls" type="VBoxContainer" parent="VBoxContainer"]
+[node name="AppearanceControls" type="VBoxContainer" parent="VBoxContainer" unique_id=1143123099]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HairControl" type="HBoxContainer" parent="VBoxContainer/AppearanceControls"]
+[node name="HairControl" type="HBoxContainer" parent="VBoxContainer/AppearanceControls" unique_id=1632193834]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/HairControl"]
+[node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/HairControl" unique_id=14255032]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "发型"
+text = "发型款式"
 
-[node name="NextHair" type="Button" parent="VBoxContainer/AppearanceControls/HairControl"]
+[node name="NextHair" type="Button" parent="VBoxContainer/AppearanceControls/HairControl" unique_id=298921051]
 layout_mode = 2
 text = " 换一个 "
 
-[node name="FaceControl" type="HBoxContainer" parent="VBoxContainer/AppearanceControls"]
+[node name="HatControl" type="HBoxContainer" parent="VBoxContainer/AppearanceControls" unique_id=812795446]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/FaceControl"]
+[node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/HatControl" unique_id=14933667]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "表情"
+text = "发型颜色"
 
-[node name="NextFace" type="Button" parent="VBoxContainer/AppearanceControls/FaceControl"]
+[node name="NextHat" type="Button" parent="VBoxContainer/AppearanceControls/HatControl" unique_id=1454943469]
 layout_mode = 2
 text = " 换一个 "
 
-[node name="SkinControl" type="HBoxContainer" parent="VBoxContainer/AppearanceControls"]
+[node name="SkinControl" type="HBoxContainer" parent="VBoxContainer/AppearanceControls" unique_id=467085610]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/SkinControl"]
+[node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/SkinControl" unique_id=1254760080]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "肤色"
 
-[node name="NextSkin" type="Button" parent="VBoxContainer/AppearanceControls/SkinControl"]
+[node name="NextSkin" type="Button" parent="VBoxContainer/AppearanceControls/SkinControl" unique_id=821302421]
 layout_mode = 2
 text = " 换一个 "
 
-[node name="Stats" type="VBoxContainer" parent="VBoxContainer"]
+[node name="Stats" type="VBoxContainer" parent="VBoxContainer" unique_id=660825878]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="STR" type="HBoxContainer" parent="VBoxContainer/Stats"]
+[node name="STR" type="HBoxContainer" parent="VBoxContainer/Stats" unique_id=470791128]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Stats/STR"]
+[node name="Label" type="Label" parent="VBoxContainer/Stats/STR" unique_id=2103297091]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "力量 (STR):"
 
-[node name="Value" type="Label" parent="VBoxContainer/Stats/STR"]
+[node name="Value" type="Label" parent="VBoxContainer/Stats/STR" unique_id=20715954]
 layout_mode = 2
 text = "4"
 
-[node name="DEX" type="HBoxContainer" parent="VBoxContainer/Stats"]
+[node name="DEX" type="HBoxContainer" parent="VBoxContainer/Stats" unique_id=791633870]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Stats/DEX"]
+[node name="Label" type="Label" parent="VBoxContainer/Stats/DEX" unique_id=989125223]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "敏捷 (DEX):"
 
-[node name="Value" type="Label" parent="VBoxContainer/Stats/DEX"]
+[node name="Value" type="Label" parent="VBoxContainer/Stats/DEX" unique_id=1803776122]
 layout_mode = 2
 text = "4"
 
-[node name="INT" type="HBoxContainer" parent="VBoxContainer/Stats"]
+[node name="INT" type="HBoxContainer" parent="VBoxContainer/Stats" unique_id=1262533914]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Stats/INT"]
+[node name="Label" type="Label" parent="VBoxContainer/Stats/INT" unique_id=683601527]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "智力 (INT):"
 
-[node name="Value" type="Label" parent="VBoxContainer/Stats/INT"]
+[node name="Value" type="Label" parent="VBoxContainer/Stats/INT" unique_id=928699009]
 layout_mode = 2
 text = "4"
 
-[node name="LUK" type="HBoxContainer" parent="VBoxContainer/Stats"]
+[node name="LUK" type="HBoxContainer" parent="VBoxContainer/Stats" unique_id=1916653961]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Stats/LUK"]
+[node name="Label" type="Label" parent="VBoxContainer/Stats/LUK" unique_id=1905964008]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "运气 (LUK):"
 
-[node name="Value" type="Label" parent="VBoxContainer/Stats/LUK"]
+[node name="Value" type="Label" parent="VBoxContainer/Stats/LUK" unique_id=1367321347]
 layout_mode = 2
 text = "4"
 
-[node name="DiceButton" type="Button" parent="VBoxContainer"]
+[node name="DiceButton" type="Button" parent="VBoxContainer" unique_id=1647325371]
 layout_mode = 2
 text = "🎲 掷骰子随机数值"
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=580778922]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "创建角色并开始"
