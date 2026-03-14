@@ -5,6 +5,13 @@
 *.import/
 export_presets.cfg
 
+# IDE-specific ignores
+.idea/
+*.iml
+
 # OS-specific ignores
 .DS_Store
 Thumbs.db
+
+# Plugin temporary files
+addons/godot-git-plugin/windows/~*
