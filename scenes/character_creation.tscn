@@ -85,7 +85,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/AppearanceControls/HairControl" unique_id=14255032]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "发型款式"
+text = "性别"
 
 [node name="NextHair" type="Button" parent="VBoxContainer/AppearanceControls/HairControl" unique_id=298921051]
 layout_mode = 2
