@@ -39,17 +39,13 @@ var stats = {"str": 4, "dex": 4, "int": 4, "luk": 4}
 func _ready():
 	randomize()
 	
-	# 加载 11 种肤色图片
-	for i in range(11):
-		var path = "res://assets/skin/skin_" + str(i) + ".png"
-		skin_textures.append(load(path))
-	
-	# 分类加载发型素材
-	load_hair_assets()
-	
 	# 初始设为“新手”
 	if class_label: class_label.text = "新手 (Beginner)"
 	if desc_label: desc_label.text = "初出茅庐的冒险者。达到10级后可转职。"
+	
+	# 分类加载素材
+	load_skin_assets()
+	load_hair_assets()
 	
 	roll_stats() # 初始随机属性
 	randomize_appearance() # 初始随机样貌
@@ -60,6 +56,22 @@ func _ready():
 	next_style_btn.pressed.connect(_on_next_style_pressed)
 	next_color_btn.pressed.connect(_on_next_color_pressed)
 	next_skin_btn.pressed.connect(_on_next_skin_pressed)
+
+# 核心逻辑：自动分类加载发型
+func load_skin_assets():
+	var path = "res://assets/skin/"
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if not dir.current_is_dir() and file_name.ends_with(".png"):
+				# 兼容原始文件名 char_a_p1_0bas_humn_v00.png 和旧文件名 skin_0.png
+				var texture = load(path + file_name)
+				skin_textures.append(texture)
+			file_name = dir.get_next()
+	# 排序，确保颜色/索引有序
+	skin_textures.sort_custom(func(a, b): return a.resource_path < b.resource_path)
 
 # 核心逻辑：自动分类加载发型
 func load_hair_assets():
@@ -139,11 +151,34 @@ func update_appearance_ui():
 
 # 点击开始游戏
 func _on_start_button_pressed():
-	var current_style = "无"
-	if hair_style_names.size() > 0:
-		current_style = hair_style_names[hair_style_idx]
-	print("开始游戏！属性：", stats, " 样貌：款式-", current_style, " 颜色索引-", hair_color_idx, " 肤色索引-", skin_idx)
-	# 之后可以在这里切换到游戏主场景
+	# 将选择好的数据保存到全局单例 PlayerData 中
+	# 注意：你需要在 Godot 的项目设置中将 player_data.gd 添加为 Autoload
+	var player_node = get_node_or_null("/root/PlayerData")
+	if player_node:
+		player_node.stats = stats.duplicate()
+		player_node.hair_style_idx = hair_style_idx
+		player_node.hair_color_idx = hair_color_idx
+		player_node.skin_idx = skin_idx
+		
+		# 打印调试信息
+		var current_style = "无"
+		if hair_style_names.size() > 0:
+			current_style = hair_style_names[hair_style_idx]
+		print("数据已成功保存到全局单例 PlayerData！")
+		print("最终属性：", stats, " 样貌：", current_style, " 颜色索引-", hair_color_idx, " 肤色索引-", skin_idx)
+		
+		# 持久化到本地文件（保存到玩家电脑上）
+		player_node.save_to_file()
+		
+		# 自动跳转到测试地图场景
+		print("跳转到测试场景：res://scenes/test.tscn")
+		get_tree().change_scene_to_file("res://scenes/test.tscn")
+	else:
+		var current_style = "无"
+		if hair_style_names.size() > 0:
+			current_style = hair_style_names[hair_style_idx]
+		print("【提示】PlayerData 单例未启用，数据仅在控制台打印：", stats, " 样貌：", current_style)
+		printerr("请在 Godot 项目设置 -> Autoload 中添加 scripts/player_data.gd 为 'PlayerData'")
 
 # 点击骰子随机属性
 func _on_dice_button_pressed():

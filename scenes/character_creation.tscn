@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b8y2j3k4l5m6n"]
 
 [ext_resource type="Script" uid="uid://0mg7or7toxcx" path="res://scripts/character_creation.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://ckw4f3e8inhba" path="res://assets/skin/skin_0.png" id="2_5nl2f"]
 
 [node name="CharacterCreation" type="Control" unique_id=129513897]
 layout_mode = 3
@@ -50,7 +49,6 @@ layout_mode = 2
 texture_filter = 1
 position = Vector2(150, 100)
 scale = Vector2(3, 3)
-texture = ExtResource("2_5nl2f")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 64)
 
